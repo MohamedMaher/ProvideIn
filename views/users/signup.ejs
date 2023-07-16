@@ -1,0 +1,74 @@
+<%- include('../layout/header.ejs') %>
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-6 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h2 class="text-center">
+                            Sign Up
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <% if (typeof alert !='undefined' ) { %>
+                            <% alert.forEach(err=> { %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Validation !</strong>
+                                    <%= err.msg %>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+                                <% }) %>
+                                    <% } %>
+                                        <form action="/users/signup" method="post">
+                                            <div class="mb-3">
+                                                <label for="user_name">Name</label>
+                                                <input type="text" name="user_name" id="user_name" class="form-control"
+                                                    placeholder="Enter Your Name" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="user_mail">Mail</label>
+                                                <input type="mail" name="user_mail" id="user_mail" class="form-control"
+                                                    placeholder="Enter Your Mail" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="user_mobile">Mobile</label>
+                                                <input type="number" name="user_mobile" id="user_mobile"
+                                                    class="form-control" placeholder="Enter Your Mobile" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="user_password">Password</label>
+                                                <input type="password" name="user_password" id="user_password"
+                                                    class="form-control" placeholder="Enter Password" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="user_c_password">Confirm Password</label>
+                                                <input type="password" name="user_c_password" id="user_c_password"
+                                                    class="form-control" placeholder="Re-Enter Password" />
+                                                <label for="notmatched" id="notmatched"
+                                                    class="text-danger d-none">Password is not
+                                                    matched</label>
+                                            </div>
+                                            <div class="mb-3 mx-auto">
+                                                <input type="submit" value="Sign Up" id="signup"
+                                                    class="btn btn-primary form-control disabled" name="signup" />
+                                            </div>
+                                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layout/footer.ejs') %>
+        <script>
+            $(document).ready(function () {
+                $("#user_c_password").focusout(function () {
+                    if ($("#user_password").val() === $("#user_c_password").val()) {
+                        $("#signup").removeClass("disabled");
+                        $("#notmatched").addClass("d-none");
+                    } else {
+                        $("#notmatched").removeClass("d-none");
+                        $("#signup").addClass("disabled");
+                    }
+                })
+            });
+        </script>

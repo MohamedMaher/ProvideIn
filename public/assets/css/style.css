@@ -1,0 +1,15 @@
+@font-face {
+    font-family: corner;
+    src: url('../font/Cornerstone.ttf');
+}
+
+* {
+    font-family: sans-serif;
+}
+
+.d-none {
+    display: none;
+}
+.card-img{
+    height: 100%;
+}

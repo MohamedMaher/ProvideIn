@@ -1,0 +1,44 @@
+<%- include('../layout/header.ejs') %>
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-6 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h2 class="text-center">
+                            Confirmation
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <% if (typeof msg !='undefined' ) { %>
+                            <% msg.forEach(err=> { %>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>Validation !</strong>
+                                    <%= err.msg %>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+                                <% }) %>
+                                    <% } %>
+                                        <form action="/confirm" method="post">
+                                            <div class="mb-3">
+                                                <h4 class="text-center text-danger">
+                                                    Please enter code that sent on your mail!
+                                                </h4>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="user_code">Code</label>
+                                                <input type="text" name="user_code" id="user_code" class="form-control"
+                                                    placeholder="Enter Code" />
+
+                                            </div>
+                                            <div class="mb-3 mx-auto">
+                                                <input type="submit" value="Confirm"
+                                                    class="btn btn-primary form-control" name="confirm" />
+                                            </div>
+                                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layout/footer.ejs') %>
